@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    text-decoration: none; border: none; outline: none;
+    scroll-behavior: smooth; font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-color: #081b29;
+    --second-bg-color: #112e42;
+    --text-color: #fff;
+    --main-color: #00f7ff;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    position: fixed; top: 0; width: 100%; padding: 20px 9%;
+    background: rgba(8, 27, 41, 0.9); display: flex;
+    justify-content: space-between; align-items: center; z-index: 1000;
+    border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+}
+
+.logo-text { font-size: 25px; font-weight: 700; }
+.logo-text span { color: var(--main-color); }
+
+.navbar a {
+    font-size: 18px; color: #fff; margin-left: 35px; transition: .3s;
+}
+.navbar a:hover, .navbar a.active { 
+    color: var(--main-color); text-shadow: 0 0 10px var(--main-color);
+}
+
+/* Section Layout */
+section { min-height: 100vh; padding: 120px 9% 60px; }
+.heading { font-size: 45px; text-align: center; margin-bottom: 40px; font-weight: 800; }
+.heading span { color: var(--main-color); }
+
+/* Home Section */
+.home { display: flex; align-items: center; gap: 50px; justify-content: center; }
+.home-info h1 { font-size: 55px; font-weight: 800; line-height: 1.2; }
+.home-info h1 span { color: var(--main-color); }
+.home-info h2 { font-size: 30px; color: var(--main-color); margin: 10px 0; }
+.home-info p { font-size: 18px; line-height: 1.6; margin: 20px 0; max-width: 600px; }
+
+.img-box {
+    width: 380px; height: 380px; border-radius: 50%;
+    border: 6px solid var(--main-color); overflow: hidden;
+    box-shadow: 0 0 30px var(--main-color);
+}
+.img-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* About Text Box */
+.text-box-special {
+    background: var(--second-bg-color); padding: 40px;
+    border-radius: 20px; border-left: 5px solid var(--main-color);
+    max-width: 900px; margin: 0 auto; font-size: 19px; line-height: 1.8;
+}
+
+/* --- Mosaic Gallery Styling --- */
+.mosaic-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: 280px;
+    grid-auto-flow: dense;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 247, 255, 0.1);
+    transition: .5s ease;
+    background-color: var(--second-bg-color); /* ፎቶው ባይመጣ ባዶ እንዳይሆን */
+}
+
+.gallery-item img { 
+    width: 100%; height: 100%; object-fit: cover; transition: .6s ease; 
+}
+
+/* Grid Layout (ፎቶ 3 እና 5 በትክክል እንዲታዩ) */
+@media (min-width: 768px) {
+    .gallery-item.w-2 { grid-column: span 2; }
+    .gallery-item.h-2 { grid-row: span 2; }
+    .gallery-item.w-2.h-2 { grid-column: span 2; grid-row: span 2; }
+}
+
+.gallery-item:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--main-color); 
+    box-shadow: 0 0 20px var(--main-color); 
+    z-index: 10;
+}
+.gallery-item:hover img { transform: scale(1.1); }
+
+/* Photo Overlay */
+.photo-overlay {
+    position: absolute; bottom: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(transparent, rgba(8, 27, 41, 0.9));
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 20px; transition: 0.5s ease;
+}
+.gallery-item:hover .photo-overlay { bottom: 0; }
+.photo-overlay span { color: var(--main-color); font-weight: 600; font-size: 1.1rem; }
+
+/* Message / Poem Section */
+.contact-container {
+    background: var(--second-bg-color); padding: 50px;
+    border-radius: 25px; border: 1px solid var(--main-color);
+    text-align: center; max-width: 850px; margin: 0 auto;
+}
+.poem {
+    font-size: 22px; color: var(--main-color);
+    font-style: italic; line-height: 1.8; margin-bottom: 30px;
+}
+
+/* Footer & Buttons */
+.btn {
+    display: inline-block; padding: 12px 28px; background: var(--main-color);
+    color: var(--bg-color); border-radius: 8px; font-weight: 700;
+    box-shadow: 0 0 10px var(--main-color); transition: .3s;
+}
+.btn:hover { background: #fff; transform: scale(1.05); }
+
+.footer { padding: 30px; background: #05111b; text-align: center; border-top: 1px solid var(--main-color); margin-top: 50px; }
+
+.fade-in { animation: fadeIn 2s ease-in; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .home { flex-direction: column-reverse; text-align: center; }
+    .img-box { width: 280px; height: 280px; margin: 0 auto; }
+    .navbar { display: none; }
+    .heading { font-size: 35px; }
+}
